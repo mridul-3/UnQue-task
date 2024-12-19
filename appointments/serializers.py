@@ -12,7 +12,7 @@ class StudentAppointmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appointment
-        fields = ['id', 'professor', 'professor_name', 'date', 'start_time', 'end_time', 'status', 'availability']
+        fields = ['id', 'professor', 'professor_name', 'date', 'start_time', 'end_time', 'status']
         read_only_fields = ['status']
 
 class AvailabilitySerializer(serializers.ModelSerializer):

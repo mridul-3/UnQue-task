@@ -16,7 +16,7 @@ class Appointment(models.Model):
     ]
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name="student_appointments")
     professor = models.ForeignKey(User, on_delete=models.CASCADE, related_name="professor_appointments")
-    availability = models.ForeignKey(Availability, on_delete=models.CASCADE)
+    availability = models.ForeignKey(Availability, on_delete=models.CASCADE, null=True)
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()

@@ -1,5 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
+
+from .auth_helper import get_jwt_with_user
 from .models import User
 from .serializers import UserSerializer, RegistrationSerializer
 from django.contrib.auth import authenticate
@@ -25,9 +27,10 @@ def login_user(request):
     password = request.data.get('password')
     user = authenticate(username=username, password=password)
     if user:
-        token, _ = Token.objects.get_or_create(user=user)
+        token_dict = get_jwt_with_user(user)
+        # token, _ = Token.objects.create(user=user, key=token_dict['access'])
         return Response({
-            'token': token.key,
+            'token': token_dict['access'],
             'user_id': user.pk,
             'email': user.email,
             'user_type': user.user_type
